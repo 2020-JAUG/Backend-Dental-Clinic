@@ -9,4 +9,3 @@ const db = mongoose.connect(QUERY_STRING,
 
 
 module.exports = db;
-
