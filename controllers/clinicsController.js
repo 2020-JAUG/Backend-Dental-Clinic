@@ -13,6 +13,8 @@ class Hospital {
     async createClinic(clinic){
         return Clinic.create(clinic);
     }
+
+    
 }
 
 let clinicsController = new Hospital();
