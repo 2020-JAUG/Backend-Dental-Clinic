@@ -14,7 +14,12 @@ class Hospital {
         return Clinic.create(clinic);
     }
 
-    
+    async updateClinic(bodyData){
+        return Clinic.findByIdAndUpdate(
+            {_id: bodyData.id},
+            {phone: bodyData.phone}
+        )
+    }
 }
 
 let clinicsController = new Hospital();
