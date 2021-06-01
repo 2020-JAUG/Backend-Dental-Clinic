@@ -10,6 +10,9 @@ class Hospital {
         return Clinic.find();
     }
 
+    async createClinic(clinic){
+        return Clinic.create(clinic);
+    }
 }
 
 let clinicsController = new Hospital();
