@@ -39,4 +39,18 @@ router.put('/', async (req,res) => {
     }
 })
 
+// DELETE - Deletes a clinic
+router.delete('/', async (req, res) => {
+    try {
+        const bodyData = req.body;
+        res.json(await clinicsController.deleteClinic(bodyData))
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+})
+
+
+module.exports = router;
 
