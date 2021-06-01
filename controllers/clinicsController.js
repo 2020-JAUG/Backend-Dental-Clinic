@@ -20,6 +20,12 @@ class Hospital {
             {phone: bodyData.phone}
         )
     }
+
+    async deleteClinic(bodyData){
+        return Clinic.findByIdAndDelete(
+            {_id: bodyData.id},
+        )
+    }
 }
 
 let clinicsController = new Hospital();
