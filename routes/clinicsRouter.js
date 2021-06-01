@@ -5,7 +5,7 @@ const clinicsController = require('../controllers/clinicsController');
 
 router.get('/', async(req, res) => {
     try {
-        res.json(await userController.findAllClinics())
+        res.json(await clinicsController.findAllClinics())
     } catch (err) {
         return res.status(500).json({
             message: err.message
@@ -18,11 +18,25 @@ router.get('/', async(req, res) => {
 router.post('/', async(req, res) => {
     try {
         const clinic = req.body;
-        res.json(await userController.createClinic(clinic))
+        res.json(await clinicsController.createClinic(clinic))
     } catch (err) {
         return res.status(500).json({
             message: err.message
         });
     }
 });
+
+// PUT - Updates the information about a clinic 
+
+router.put('/', async (req,res) => {
+    try{
+        const bodyData = req.body;
+        res.json(await clinicsController.updateClinic(bodyData)); 
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+})
+
 
