@@ -6,15 +6,15 @@
 
 ---
 
-:speech_balloon: [About](#about)   
+- [About](#about)   
 
-:clipboard: [Instructions](#instructions)
+- [Instructions](#instructions)
 
-:mailbox: [Endpoints](#endpoints)
+- [Endpoints](#endpoints)
 
-🔧 [Tools](#tools)
+- [Tools](#tools)
 
-✍️ [Developers](#developers)
+- [Developers](#developers)
 
 ---
 <a name="about"></a>
