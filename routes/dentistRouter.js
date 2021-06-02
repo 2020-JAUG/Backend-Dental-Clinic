@@ -37,4 +37,19 @@ router.put('/', async (req,res) => {
             message: err.message
         });
     }
-})
+});
+
+// DELETE - Deletes a dentist
+router.delete('/', async (req, res) => {
+    try {
+        const bodyData = req.body;
+        res.json(await dentistController.deleteDentist(bodyData))
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+
+module.exports = router;
