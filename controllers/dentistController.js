@@ -10,6 +10,10 @@ class Professional {
         return Dentist.find();
     }
 
+    async createDentist(dentist){
+        return Dentist.create(dentist);
+    }
+
 
 
 };
