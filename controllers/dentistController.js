@@ -17,7 +17,16 @@ class Professional {
     async updateDentist(bodyData){
         return Dentist.findByIdAndUpdate(
             {_id: bodyData.id},
-            {phone: bodyData.phone}
+            {phone: bodyData.phone,
+            city: bodyData.city,},
+            {new:true,omitUndefined:true}
+        )
+    }
+
+    async addSpeciality(bodyData){
+        return Dentist.findByIdAndUpdate(
+            {_id: bodyData.id},
+            {$push: {speciality: bodyData.speciality}}
         )
     }
 
