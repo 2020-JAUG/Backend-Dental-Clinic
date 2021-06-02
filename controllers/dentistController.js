@@ -14,6 +14,13 @@ class Professional {
         return Dentist.create(dentist);
     }
 
+    async updateDentist(bodyData){
+        return Dentist.findByIdAndUpdate(
+            {_id: bodyData.id},
+            {phone: bodyData.phone}
+        )
+    }
+
 
 
 };
