@@ -21,7 +21,11 @@ class Professional {
         )
     }
 
-
+    async deleteDentist(bodyData){
+        return Dentist.findByIdAndDelete(
+            {_id: bodyData.id},
+        )
+    }
 
 };
 
