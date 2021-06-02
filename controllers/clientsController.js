@@ -15,6 +15,20 @@ class Patient {
         return Client.find();
     }
 
+    async modifyClient(body) {
+        return Client.findByIdAndUpdate( { _id: body._id },
+            { email: body.email,
+              city: body.city,
+              cp: body.cp,
+              isActive: body.isActive },
+             { new:true, omitUndefined:true }
+        )
+    }
+
+    async removeClient(req) {
+            return Client.findByIdAndRemove( { _id: req._id } );
+    }
+
 
 }
 
