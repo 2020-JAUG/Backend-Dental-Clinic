@@ -10,12 +10,9 @@ const dentistSchema = new Schema ({
     phone: {
         type: Number
     },
-    specialty: {
+    speciality: {
         type: Array,
         required: true
-    },
-    adress: {
-        type: String
     },
     city: {
         type: String
