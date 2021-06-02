@@ -26,4 +26,15 @@ router.post('/', async(req, res) => {
     }
 });
 
+// PUT - Updates the information about a dentist
 
+router.put('/', async (req,res) => {
+    try{
+        const bodyData = req.body;
+        res.json(await dentistController.updateDentist(bodyData)); 
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+})
