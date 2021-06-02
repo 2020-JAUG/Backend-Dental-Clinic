@@ -39,6 +39,19 @@ router.put('/', async (req,res) => {
     }
 });
 
+// POST - Add speciality to a dentist
+
+router.post('/addspeciality', async (req,res) => {
+    try{
+        const bodyData = req.body;
+        res.json(await dentistController.addSpeciality(bodyData)); 
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
 // DELETE - Deletes a dentist
 router.delete('/', async (req, res) => {
     try {
