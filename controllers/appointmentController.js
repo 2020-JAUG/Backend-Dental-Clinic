@@ -21,13 +21,12 @@ class Meeting {
         }*/
         const clientId = data.client;
         const date = data.date;
-        const meet = Appointment.find({date: date});
+        if (Appointment.findOne({date: date},{idClient: clientId}) != null ){
+                throw new Error('You already have an appointment');
+            }
         // data.client == meet.client
         console.log(meet);
 
-
-
-        const clientId = data.client;
         const clinicId = data.clinic;
         const dentistId = data.dentist;
         
@@ -37,9 +36,6 @@ class Meeting {
         // if (!dentistInfo){
         //     throw new Error('dentist does not exist');
         // }
-
-
-        // console.log(dentistInfo);
 
         let client1 = {
             idClient: data.client,
@@ -71,6 +67,11 @@ class Meeting {
 
     async findAllAppointments() {
         return Appointment.find();
+    }
+
+    async findByDate(date, clientid) {
+        return Appointment.findOne({date: date},
+             {idClient: clientid});
     }
 
     async modifyAppointment(data) {

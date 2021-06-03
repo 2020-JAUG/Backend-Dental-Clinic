@@ -22,6 +22,18 @@ router.get("/", async(req, res) => {
     }
 });
 
+router.get("/date", async(req, res) => {
+    try {
+        const date = req.body.date;
+        const clientid = req.body.client;
+        res.json(await appointmentController.findByDate(date, clientid));
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+});
+
 router.put("/", async(req, res) => {
     try {
         const data = req.body;
