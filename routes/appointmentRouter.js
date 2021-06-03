@@ -22,7 +22,18 @@ router.get("/", async(req, res) => {
     }
 });
 
-router.get("/schedule", async(req, res) => {
+router.post("/client", async(req, res) => {
+    try {
+        const id = req.body.id;
+        res.json(await appointmentController.findByClient(id));
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+});
+
+router.post("/schedule", async(req, res) => {
     try {
         const date = req.body.date;
         const dentistId = req.body.dentist;

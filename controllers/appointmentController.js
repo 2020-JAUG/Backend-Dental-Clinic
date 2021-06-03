@@ -12,20 +12,12 @@ class Meeting {
     }
 
     async createAppointment(data) {
-        // Data should be like this:
-        /*{
-            "clientId": "60b67e0371c1b38f85c1191d",
-            "clinicId": "60b653c5c75e9e233617715e",
-            "date": "2021-01-01",
-            "isActive": true
-        }*/
+
         const clientId = data.client;
         const date = data.date;
         if (Appointment.findOne({date: date},{idClient: clientId}) != null ){
                 throw new Error('You already have an appointment');
             }
-        // data.client == meet.client
-        console.log(meet);
 
         const clinicId = data.clinic;
         const dentistId = data.dentist;
@@ -33,9 +25,6 @@ class Meeting {
         const clientInfo = await Client.findById(clientId);
         const clinicInfo = await Clinic.findById(clinicId);
         const dentistInfo = await Dentist.findById(dentistId);
-        // if (!dentistInfo){
-        //     throw new Error('dentist does not exist');
-        // }
 
         let client1 = {
             idClient: data.client,
@@ -53,9 +42,9 @@ class Meeting {
         let dentist1 = {
             idDentist: data.dentist,
             nombre: dentistInfo.name,
-            especialidad: dentistInfo.speciality[0],
+            especialidad: dentistInfo.speciality,
         }
-        console.log(clinic1,client1,dentist1);
+
         return Appointment.create(
             {client:client1,
             clinic:clinic1,
@@ -69,8 +58,25 @@ class Meeting {
         return Appointment.find();
     }
 
+    async findByClient(id) {
+
+        const clientAppointments =  await Appointment.find();
+
+        let clientArray = [];
+
+        for (let i in clientAppointments){
+
+            if ( clientAppointments[i].client.idClient == id ){
+                clientArray.push(clientAppointments[i]);
+            }
+        }
+
+        return clientArray;
+    }
+    
+
     async findByDate(date, dentistId) {
-        return Appointment.findOne({date: date},
+        return Appointment.find({date: date},
              {idDentist: dentistId});
     }
 
