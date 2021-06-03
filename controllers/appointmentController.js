@@ -76,8 +76,28 @@ class Meeting {
     
 
     async findByDate(date, dentistId) {
-        return Appointment.find({date: date},
-             {idDentist: dentistId});
+        const dentistAppointments = await Appointment.find();
+
+        let dentistArray = [];
+        let j = 0;
+        
+        for(let i in dentistAppointments){
+
+            console.log(dentistAppointments[i].date);
+            console.log(dentistAppointments[i].dentist.idDentist);
+
+            let dentDate = dentistAppointments[i].date;
+
+            if  (dentDate == date) {
+                dentistArray.push(dentistAppointments[i]);
+            }
+
+            if (dentistAppointments[i].dentist.idDentist == dentistId){
+                j++;
+            }
+        } 
+
+        return dentistArray;
     }
 
     async modifyAppointment(data) {
