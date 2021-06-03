@@ -69,19 +69,27 @@ class Meeting {
         return Appointment.find();
     }
 
-    async findByDate(date, clientid) {
+    async findByDate(date, dentistId) {
         return Appointment.findOne({date: date},
-             {idClient: clientid});
+             {idDentist: dentistId});
     }
 
     async modifyAppointment(data) {
+        const clinicId = data.clinic;
+        const clinicInfo = await Clinic.findById(clinicId);
+        
+        let clinic1 = {
+            idClinica: clinicId,
+            nombre : clinicInfo.name,
+            email : clinicInfo.email,
+            city : clinicInfo.city,
+        }
         return Appointment.findByIdAndUpdate( { _id: data._id },
             {
-                client: data.clientId,
-                clinic: data.clinicId,
+                clinic: clinic1,
                 date: data.date,
                 isActive: data.isActive
-            }           
+            }, {new:true,omitUndefined:true}        
         )
     }
 

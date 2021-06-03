@@ -22,11 +22,11 @@ router.get("/", async(req, res) => {
     }
 });
 
-router.get("/date", async(req, res) => {
+router.get("/schedule", async(req, res) => {
     try {
         const date = req.body.date;
-        const clientid = req.body.client;
-        res.json(await appointmentController.findByDate(date, clientid));
+        const dentistId = req.body.dentist;
+        res.json(await appointmentController.findByDate(date, dentistId));
     } catch (error) {
         return res.status(500).json({
             message: error.message
