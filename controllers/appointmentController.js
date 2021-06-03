@@ -1,8 +1,8 @@
 
-const appointment = require("../models/appointment");
 const bcrypt = require("bcrypt");
 const Clinic = require("../models/clinic");
 const Client = require("../models/client");
+const Dentist = require("../models/dentist");
 const Appointment = require("../models/appointment");
 
 
@@ -20,10 +20,27 @@ class Meeting {
             "isActive": true
         }*/
         const clientId = data.client;
+        const date = data.date;
+        const meet = Appointment.find({date: date});
+        // data.client == meet.client
+        console.log(meet);
+
+
+
+        const clientId = data.client;
         const clinicId = data.clinic;
-        // const dentist = data.dentistId;
+        const dentistId = data.dentist;
+        
         const clientInfo = await Client.findById(clientId);
         const clinicInfo = await Clinic.findById(clinicId);
+        const dentistInfo = await Dentist.findById(dentistId);
+        // if (!dentistInfo){
+        //     throw new Error('dentist does not exist');
+        // }
+
+
+        // console.log(dentistInfo);
+
         let client1 = {
             idClient: data.client,
             nombre : clientInfo.name,
@@ -36,10 +53,17 @@ class Meeting {
             email : clinicInfo.email,
             city : clinicInfo.city,
         }
-        console.log(clinic1,client1);
+
+        let dentist1 = {
+            idDentist: data.dentist,
+            nombre: dentistInfo.name,
+            especialidad: dentistInfo.speciality[0],
+        }
+        console.log(clinic1,client1,dentist1);
         return Appointment.create(
             {client:client1,
             clinic:clinic1,
+            dentist: dentist1,
             date: data.date,
             isActive: data.isActive
             });

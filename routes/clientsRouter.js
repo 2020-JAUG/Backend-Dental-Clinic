@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const clientsController = require("../controllers/clientsController");
+const auth = require('../middleware/auth.js');
+
 
 router.post("/", async(req, res) => {
     try {
@@ -18,6 +20,17 @@ router.get("/", async(req, res) => {
     } catch (error) {
         return res.status(500).json({
             message: error.message
+        });
+    }
+});
+
+router.post('/profile', async(req, res) => {
+    try {
+        let id = req.body.id;
+        res.json(await clientsController.findById(id));
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
         });
     }
 });

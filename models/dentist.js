@@ -7,6 +7,15 @@ const dentistSchema = new Schema ({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
     phone: {
         type: Number
     },
@@ -27,7 +36,14 @@ const dentistSchema = new Schema ({
     
 });
 
+const toJSONConfig = {
+    transform: (doc,ret,opt) => {//transform es un metodo de mongoose
+           delete ret['password']//ret es un metodo encripta la password para enviarla con mas segura
+           return ret
+    }
+}
 
+dentistSchema.set('toJSON', toJSONConfig);
 
 const Dentist= mongoose.model('Dentist', dentistSchema);
 module.exports = Dentist ;

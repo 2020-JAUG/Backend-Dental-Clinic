@@ -15,6 +15,18 @@ class Patient {
         return Client.find();
     }
 
+    async findByEmail(email){
+        return Client.findOne(
+            {email: email}
+        )
+    }
+
+    async findById(id){
+        return Client.findOne(
+            {_id: id}
+        )
+    }
+
     async modifyClient(body) {
         return Client.findByIdAndUpdate( { _id: body._id },
             { email: body.email,

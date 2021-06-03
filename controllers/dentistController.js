@@ -1,4 +1,7 @@
+
 const Dentist = require('../models/dentist');
+const bcrypt = require('bcrypt');
+
 
 class Professional {
 
@@ -11,8 +14,10 @@ class Professional {
     }
 
     async createDentist(dentist){
+        dentist.password = await bcrypt.hash( dentist.password, 10 );
         return Dentist.create(dentist);
     }
+    
 
     async updateDentist(bodyData){
         return Dentist.findByIdAndUpdate(
@@ -20,6 +25,18 @@ class Professional {
             {phone: bodyData.phone,
             city: bodyData.city,},
             {new:true,omitUndefined:true}
+        )
+    }
+
+    async findByEmail(email){
+        return Dentist.findOne(
+            {email: email}
+        )
+    }
+
+    async findById(id){
+        return Dentist.findOne(
+            {_id: id}
         )
     }
 

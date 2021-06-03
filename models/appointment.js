@@ -13,10 +13,10 @@ const appointmentSchema = new Schema ({
 
     },
 
-    // dentist:{
-    //     type: Object,
-    //     required: true
-    // },
+    dentist:{
+        type: Object,
+        required: true
+    },
 
     date: {
         type: Date,
