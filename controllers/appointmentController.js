@@ -28,20 +28,24 @@ class Meeting {
 
         let client1 = {
             idClient: data.client,
-            nombre : clientInfo.name,
+            name : clientInfo.name,
+            phone: clientInfo.phone,
             email : clientInfo.email,
             city : clientInfo.city,
         }
         let clinic1 = {
             idClinica: data.clinic,
-            nombre : clinicInfo.name,
+            name : clinicInfo.name,
+            phone: clinicInfo.phone,
+            addres: clinicInfo.addres,
             email : clinicInfo.email,
             city : clinicInfo.city,
         }
 
         let dentist1 = {
             idDentist: data.dentist,
-            nombre: dentistInfo.name,
+            name: dentistInfo.name,
+            phone: dentistInfo.phone,
             especialidad: dentistInfo.speciality,
         }
 
@@ -67,7 +71,13 @@ class Meeting {
         for (let i in clientAppointments){
 
             if ( clientAppointments[i].client.idClient == id ){
-                clientArray.push(clientAppointments[i]);
+                clientArray.push(
+                    clientAppointments[i].clinic.nombre,
+                    clientAppointments[i].clinic.address,
+                    clientAppointments[i].clinic.phone,
+                    clientAppointments[i].clinic.email,
+                    clientAppointments[i].dentist.nombre,
+                    clientAppointments[i].date );
             }
         }
 
