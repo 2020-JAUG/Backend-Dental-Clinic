@@ -18,11 +18,11 @@ class Professional {
         return Dentist.create(dentist);
     }
 
-    async findDentistInfo() {
+    async findDentistInfo(body) {
         return Dentist.find(
-             {isActive : true},
-             {city: '$city',
-             name: '$name',
+             {isActive : true, city: body.city},
+             {name: '$name',
+             city: '$city',
              speciality: '$speciality'}
          );
      }
