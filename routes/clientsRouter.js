@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const clientsController = require("../controllers/clientsController");
-const auth = require('../middleware/auth.js');
+const auth = require('../middleware/authClient.js');
+const admin = require("../middleware/admin");
 
 
 router.post("/", async(req, res) => {
@@ -14,7 +15,7 @@ router.post("/", async(req, res) => {
     }
 });
 
-router.get("/", async(req, res) => {
+router.get("/", admin, async(req, res) => {
     try {
         res.json(await clientsController.findAllClients());
     } catch (error) {
@@ -24,7 +25,7 @@ router.get("/", async(req, res) => {
     }
 });
 
-router.post('/profile', async(req, res) => {
+router.post('/profile', auth, async(req, res) => {
     try {
         let id = req.body.id;
         res.json(await clientsController.findById(id));
@@ -35,7 +36,7 @@ router.post('/profile', async(req, res) => {
     }
 });
 
-router.put("/", async(req, res) => {
+router.put("/", auth, async(req, res) => {
     try {
         const body = req.body;
         res.json(await clientsController.modifyClient(body));
@@ -46,7 +47,7 @@ router.put("/", async(req, res) => {
     }
 });
 
-router.delete("/", async(req, res) => {
+router.delete("/", auth, async(req, res) => {
     try {
         const body = req.body;
         res.json(await clientsController.removeClient(body));
