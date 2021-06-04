@@ -1,13 +1,25 @@
 const router = require('express').Router();
 const dentistController = require('../controllers/dentistController');
-const auth = require('../middleware/auth.js');
+const authDentist = require('../middleware/authDentist.js');
+const authClient = require('../middleware/authClient.js');
+const admin = require("../middleware/admin");
 
 
 // GET - Returns all dentists
 
-router.get('/', async(req, res) => {
+router.get('/', admin, async(req, res) => {
     try {
         res.json(await dentistController.findAllDentists());
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
+router.get('/info',  async(req, res) => {
+    try {
+        res.json(await dentistController.findDentistInfo());
     } catch (err) {
         return res.status(500).json({
             message: err.message

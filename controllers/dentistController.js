@@ -1,6 +1,6 @@
 
-const Dentist = require('../models/dentist');
 const bcrypt = require('bcrypt');
+const Dentist = require('../models/dentist');
 
 
 class Professional {
@@ -17,7 +17,14 @@ class Professional {
         dentist.password = await bcrypt.hash( dentist.password, 10 );
         return Dentist.create(dentist);
     }
-    
+
+    async findDentistInfo() {
+       return Dentist.find(
+        {
+            $get: { name, city, speciality }
+        });
+
+    }
 
     async updateDentist(bodyData){
         return Dentist.findByIdAndUpdate(
