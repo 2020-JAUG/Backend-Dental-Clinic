@@ -15,7 +15,9 @@ class Meeting {
 
         const clientId = data.client;
         const date = data.date;
-        if (Appointment.findOne({date: date},{idClient: clientId}) != null ){
+        console.log(date, clientId);
+        const check = await Appointment.findOne({date: date}, {idClient: clientId});
+        if (check != null ){
                 throw new Error('You already have an appointment');
             }
 
@@ -62,22 +64,26 @@ class Meeting {
         return Appointment.find();
     }
 
+
+    // FUNCIONA, FALTA ACTUALIZAR LOS MODELS CREADOS DE APPOINTMENT
     async findByClient(id) {
 
-        const clientAppointments =  await Appointment.find();
+        const clientAppointments =  await Appointment.find({isActive: true});
 
         let clientArray = [];
 
         for (let i in clientAppointments){
 
             if ( clientAppointments[i].client.idClient == id ){
-                clientArray.push(
-                    clientAppointments[i].clinic.nombre,
-                    clientAppointments[i].clinic.address,
-                    clientAppointments[i].clinic.phone,
-                    clientAppointments[i].clinic.email,
-                    clientAppointments[i].dentist.nombre,
-                    clientAppointments[i].date );
+                const appointment = {
+                    clinicName: clientAppointments[i].clinic.name,
+                    clinicAddress: clientAppointments[i].clinic.address,
+                    clinicPhone: clientAppointments[i].clinic.phone,
+                    clinicEmail: clientAppointments[i].clinic.email,
+                    dentistName: clientAppointments[i].dentist.name,
+                    date: clientAppointments[i].date 
+                }
+                    clientArray.push(appointment);
             }
         }
 
