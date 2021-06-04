@@ -20,9 +20,13 @@ class Professional {
 
     async findDentistInfo() {
        return Dentist.find(
-        {
-            $get: { name, city, speciality }
-        });
+        
+            {isActive : true},
+            {city: '$city',
+            name: '$name',
+            speciality: '$speciality'}
+
+        );
 
     }
 
