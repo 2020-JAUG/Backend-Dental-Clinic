@@ -79,17 +79,13 @@ class Meeting {
         const dentistAppointments = await Appointment.find(
             {date: date},
             {idDentist: dentistId});
-        console.log(dentistAppointments[0]._id);
 
         let dentistArray = [];
 
         for(let i in dentistAppointments){
-
-           const object = await Appointment.findById(dentistAppointments[0]._id);
-           console.log(object);
+            const object = await Appointment.findById(dentistAppointments[0]._id);
             dentistArray.push(object);
         }
-
         return dentistArray;
     }
 

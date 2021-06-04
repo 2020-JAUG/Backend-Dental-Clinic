@@ -18,12 +18,8 @@ class Professional {
         return Dentist.create(dentist);
     }
 
-    async findDentistInfo() {
-       return Dentist.find(
-        {
-            $get: { name, city, speciality }
-        });
-
+    async findDentistInfo(body) {
+        const dentistInfo = await Dentist.find({isActive: true, city: body.city});
     }
 
     async updateDentist(bodyData){

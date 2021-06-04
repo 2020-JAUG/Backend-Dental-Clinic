@@ -17,9 +17,10 @@ router.get('/', admin, async(req, res) => {
     }
 });
 
-router.get('/info',  async(req, res) => {
+router.post('/info',  async(req, res) => {
     try {
-        res.json(await dentistController.findDentistInfo());
+        let body = req.body;
+        res.json(await dentistController.findDentistInfo(body));
     } catch (err) {
         return res.status(500).json({
             message: err.message
