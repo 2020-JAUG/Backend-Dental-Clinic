@@ -22,6 +22,7 @@ class Professional {
         return Dentist.find(
              {isActive : true, city: body.city},
              {name: '$name',
+             _id: 0,
              city: '$city',
              speciality: '$speciality'}
          );
