@@ -21,7 +21,7 @@ class Meeting {
 
         const clinicId = data.clinic;
         const dentistId = data.dentist;
-        
+
         const clientInfo = await Client.findById(clientId);
         const clinicInfo = await Clinic.findById(clinicId);
         const dentistInfo = await Dentist.findById(dentistId);
@@ -73,29 +73,22 @@ class Meeting {
 
         return clientArray;
     }
-    
+
 
     async findByDate(date, dentistId) {
-        const dentistAppointments = await Appointment.find();
+        const dentistAppointments = await Appointment.find(
+            {date: date},
+            {idDentist: dentistId});
+        console.log(dentistAppointments[0]._id);
 
         let dentistArray = [];
-        let j = 0;
-        
+
         for(let i in dentistAppointments){
 
-            console.log(dentistAppointments[i].date);
-            console.log(dentistAppointments[i].dentist.idDentist);
-
-            let dentDate = dentistAppointments[i].date;
-
-            if  (dentDate == date) {
-                dentistArray.push(dentistAppointments[i]);
-            }
-
-            if (dentistAppointments[i].dentist.idDentist == dentistId){
-                j++;
-            }
-        } 
+           const object = await Appointment.findById(dentistAppointments[0]._id);
+           console.log(object);
+            dentistArray.push(object);
+        }
 
         return dentistArray;
     }
@@ -103,7 +96,7 @@ class Meeting {
     async modifyAppointment(data) {
         const clinicId = data.clinic;
         const clinicInfo = await Clinic.findById(clinicId);
-        
+
         let clinic1 = {
             idClinica: clinicId,
             nombre : clinicInfo.name,
@@ -115,7 +108,7 @@ class Meeting {
                 clinic: clinic1,
                 date: data.date,
                 isActive: data.isActive
-            }, {new:true,omitUndefined:true}        
+            }, {new:true,omitUndefined:true}
         )
     }
 
