@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const clientsController = require("../controllers/clientsController");
-const auth = require('../middleware/authClient.js');
+const authClient = require('../middleware/authClient.js');
+const authDentist = require('../middleware/authDentist.js');
 const admin = require("../middleware/admin");
 
 
@@ -25,7 +26,7 @@ router.get("/", admin, async(req, res) => {
     }
 });
 
-router.post('/profile', auth, async(req, res) => {
+router.post('/profile', authClient, async(req, res) => {
     try {
         let id = req.body.id;
         res.json(await clientsController.findById(id));
@@ -36,7 +37,7 @@ router.post('/profile', auth, async(req, res) => {
     }
 });
 
-router.put("/", auth, async(req, res) => {
+router.put("/", authClient, async(req, res) => {
     try {
         const body = req.body;
         res.json(await clientsController.modifyClient(body));
@@ -47,7 +48,7 @@ router.put("/", auth, async(req, res) => {
     }
 });
 
-router.delete("/", auth, async(req, res) => {
+router.delete("/", authClient, async(req, res) => {
     try {
         const body = req.body;
         res.json(await clientsController.removeClient(body));
