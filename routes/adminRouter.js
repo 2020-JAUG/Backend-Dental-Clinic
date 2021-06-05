@@ -2,7 +2,7 @@ const router = require('express').Router();
 const adminController = require('../controllers/adminController');
 const admin = require('../middleware/admin');
 
-// GET - Returns all clinics
+// GET - Returns all admins
 
 router.get('/', async(req, res) => {
     try {
@@ -14,9 +14,9 @@ router.get('/', async(req, res) => {
     }
 });
 
-// POST - Creates a new clinic
+// POST - Creates a new admin
 
-router.post('/', async(req, res) => {
+router.post('/', admin, async(req, res) => {
     try {
         const body = req.body;
         res.json(await adminController.createAdmin(body))
@@ -27,7 +27,7 @@ router.post('/', async(req, res) => {
     }
 });
 
-// PUT - Updates the information about a clinic 
+// PUT - Updates the information about an admin
 
 router.put('/', admin, async (req,res) => {
     try{
@@ -40,7 +40,7 @@ router.put('/', admin, async (req,res) => {
     }
 })
 
-// DELETE - Deletes a clinic
+// DELETE - Deletes an admin
 router.delete('/', admin, async (req, res) => {
     try {
         const body = req.body;

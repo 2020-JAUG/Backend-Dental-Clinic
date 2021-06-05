@@ -2,6 +2,7 @@ const router = require('express').Router();
 const loginController = require('../controllers/loginController');
 const clientsController = require('../controllers/clientsController');
 const dentistController = require('../controllers/dentistController');
+const adminController = require('../controllers/adminController');
 
 // CLIENT ROUTE FOR LOGIN
 

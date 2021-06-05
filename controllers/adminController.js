@@ -1,5 +1,6 @@
 
 const Admin = require('../models/adminModel');
+const bcrypt = require("bcrypt");
 
 class User {
 
@@ -11,8 +12,9 @@ class User {
         return Admin.find();
     }
 
-    async createAdmin(body){
-        return Admin.create(body);
+    async createAdmin(admin){
+        admin.password = await bcrypt.hash( admin.password, 10 );
+        return Admin.create(admin);
     }
 
     async findByEmail(email){
