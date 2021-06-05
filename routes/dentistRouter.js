@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const dentistController = require('../controllers/dentistController');
+const dentistController = require('../controllers/dentistController.js');
 const authDentist = require('../middleware/authDentist.js');
 const authClient = require('../middleware/authClient.js');
-const admin = require("../middleware/admin");
+const admin = require("../middleware/admin.js");
 
 
 // GET - Returns all dentists

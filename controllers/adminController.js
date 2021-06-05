@@ -1,5 +1,5 @@
 
-const Admin = require('../models/adminModel');
+const Admin = require('../models/adminModel.js');
 const bcrypt = require("bcrypt");
 
 class User {

@@ -1,6 +1,6 @@
 
 const bcrypt = require('bcrypt');
-const Dentist = require('../models/dentist');
+const Dentist = require('../models/dentist.js');
 
 
 class Professional {

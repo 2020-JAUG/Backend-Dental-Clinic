@@ -1,4 +1,4 @@
-const Clinic = require('../models/clinic');
+const Clinic = require('../models/clinic.js');
 
 class Hospital {
 

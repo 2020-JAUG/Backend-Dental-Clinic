@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const clientsController = require("../controllers/clientsController");
+const clientsController = require("../controllers/clientsController.js");
 const authClient = require('../middleware/authClient.js');
-const admin = require("../middleware/admin");
+const admin = require("../middleware/admin.js");
 
 // POST - Create a new client
 

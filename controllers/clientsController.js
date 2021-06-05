@@ -1,4 +1,4 @@
-const Client = require("../models/client");
+const Client = require("../models/client.js");
 const bcrypt = require("bcrypt");
 
 class Patient {

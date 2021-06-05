@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const clinicsController = require('../controllers/clinicsController');
-const admin = require('../middleware/admin');
+const clinicsController = require('../controllers/clinicsController.js');
+const admin = require('../middleware/admin.js');
 
 // GET - Returns all clinics
 

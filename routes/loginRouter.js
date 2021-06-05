@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const loginController = require('../controllers/loginController');
-const clientsController = require('../controllers/clientsController');
-const dentistController = require('../controllers/dentistController');
-const adminController = require('../controllers/adminController');
+const loginController = require('../controllers/loginController.js');
+const clientsController = require('../controllers/clientsController.js');
+const dentistController = require('../controllers/dentistController.js');
+const adminController = require('../controllers/adminController.js');
 
 // CLIENT ROUTE FOR LOGIN
 

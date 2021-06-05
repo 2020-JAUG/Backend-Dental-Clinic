@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const adminController = require('../controllers/adminController');
-const admin = require('../middleware/admin');
+const adminController = require('../controllers/adminController.js');
+const admin = require('../middleware/admin.js');
 
 // GET - Returns all admins
 

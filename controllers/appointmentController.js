@@ -1,9 +1,9 @@
 
 const bcrypt = require("bcrypt");
-const Clinic = require("../models/clinic");
-const Client = require("../models/client");
-const Dentist = require("../models/dentist");
-const Appointment = require("../models/appointment");
+const Clinic = require("../models/clinic.js");
+const Client = require("../models/client.js");
+const Dentist = require("../models/dentist.js");
+const Appointment = require("../models/appointment.js");
 
 
 class Meeting {

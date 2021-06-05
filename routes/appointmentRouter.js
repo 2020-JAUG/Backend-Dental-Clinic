@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const appointmentController = require("../controllers/appointmentController");
-const authClient = require("../middleware/authClient");
-const authDentist = require("../middleware/authDentist");
-const admin = require("../middleware/admin");
+const appointmentController = require("../controllers/appointmentController.js");
+const authClient = require("../middleware/authClient.js");
+const authDentist = require("../middleware/authDentist.js");
+const admin = require("../middleware/admin.js");
 
 
 // POST - Create a new appointment
