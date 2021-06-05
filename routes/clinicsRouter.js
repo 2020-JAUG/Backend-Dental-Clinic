@@ -27,6 +27,19 @@ router.post('/', admin, async(req, res) => {
     }
 });
 
+// POST - Find clinics by ID and their appointments in an array
+
+router.post('/profile', admin, async(req, res) => {
+    try {
+        const id = req.body.id;
+        res.json(await clinicsController.showClinic(id))
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
 // PUT - Updates the information about a clinic 
 
 router.put('/', admin, async (req,res) => {

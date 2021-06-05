@@ -71,6 +71,7 @@ Finally, enter the endpoints petitions in Postman and send them.
 - Clinics
    - GET /clinics --> Shows all the clinics.
    - POST /clinics --> Creates a new clinic.
+   - POST /clinics/profile --> Show clinic by id.
    - PUT /clinics --> Modifies a clinic's information.
    - DELETE /clinics --> Deletes a clinic.
 <br>
