@@ -3,6 +3,7 @@ const loginController = require('../controllers/loginController');
 const clientsController = require('../controllers/clientsController');
 const dentistController = require('../controllers/dentistController');
 
+// CLIENT ROUTE FOR LOGIN
 
 router.post('/client', async (req, res)=> {
     try {
@@ -18,6 +19,8 @@ router.post('/client', async (req, res)=> {
         }); 
     } 
 })
+
+// DENTIST ROUTE FOR LOGIN
 
 router.post('/dentist', async (req, res)=> {
     try {

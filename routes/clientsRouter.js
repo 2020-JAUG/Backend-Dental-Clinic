@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const clientsController = require("../controllers/clientsController");
 const authClient = require('../middleware/authClient.js');
-const authDentist = require('../middleware/authDentist.js');
 const admin = require("../middleware/admin");
 
+// POST - Create a new client
 
 router.post("/", async(req, res) => {
     try {
@@ -16,6 +16,8 @@ router.post("/", async(req, res) => {
     }
 });
 
+// GET - Find all data of all clients
+
 router.get("/", admin, async(req, res) => {
     try {
         res.json(await clientsController.findAllClients());
@@ -25,6 +27,9 @@ router.get("/", admin, async(req, res) => {
         });
     }
 });
+
+
+// POST - Client can check his own profile 
 
 router.post('/profile', authClient, async(req, res) => {
     try {
@@ -37,6 +42,8 @@ router.post('/profile', authClient, async(req, res) => {
     }
 });
 
+// PUT - Client can modify some attributes of his profile
+
 router.put("/", authClient, async(req, res) => {
     try {
         const body = req.body;
@@ -47,6 +54,9 @@ router.put("/", authClient, async(req, res) => {
         });
     }
 });
+
+
+// DELETE - Client can delete his profile
 
 router.delete("/", authClient, async(req, res) => {
     try {

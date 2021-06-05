@@ -5,6 +5,7 @@ const authDentist = require("../middleware/authDentist");
 const admin = require("../middleware/admin");
 
 
+// POST - Create a new appointment
 
 router.post("/", authClient, async(req, res) => {
     try {
@@ -17,6 +18,8 @@ router.post("/", authClient, async(req, res) => {
     }
 });
 
+// GET - Return all appointments history in the database.
+
 router.get("/", admin, async(req, res) => {
     try {
         res.json(await appointmentController.findAllAppointments());
@@ -26,6 +29,8 @@ router.get("/", admin, async(req, res) => {
         });
     }
 });
+
+// POST - Find all active appointments by client
 
 router.post("/client", authClient, async(req, res) => {
     try {
@@ -37,6 +42,8 @@ router.post("/client", authClient, async(req, res) => {
         });
     }
 });
+
+// POST - Find all appointments active to a dentist by date
 
 router.post("/schedule", authDentist, async(req, res) => {
     try {
@@ -50,6 +57,8 @@ router.post("/schedule", authDentist, async(req, res) => {
     }
 });
 
+// PUT - Modify an appointment by the client
+
 router.put("/", authClient, async(req, res) => {
     try {
         const data = req.body;
@@ -60,6 +69,8 @@ router.put("/", authClient, async(req, res) => {
         });
     }
 });
+
+// DELETE - Remove an appointment by the admin
 
 router.delete("/", admin, async(req, res) => {
     try {

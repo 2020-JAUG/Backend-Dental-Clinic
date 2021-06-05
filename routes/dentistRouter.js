@@ -17,6 +17,8 @@ router.get('/', admin, async(req, res) => {
     }
 });
 
+// POST - Client can filter dentists by city
+
 router.post('/info', authClient, async(req, res) => {
     try {
         let body = req.body;
@@ -27,6 +29,8 @@ router.post('/info', authClient, async(req, res) => {
         });
     }
 });
+
+// POST - Dentist can see his own profile
 
 router.post('/profile', authDentist, async(req, res) => {
     try {
