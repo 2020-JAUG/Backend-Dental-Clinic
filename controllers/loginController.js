@@ -1,12 +1,12 @@
-const clientsController = require('./clientsController');
-const dentistController = require('./dentistController');
-
+const clientsController = require('./clientsController.js');
+const dentistController = require('./dentistController.js');
+const adminController = require('./adminController.js')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const secret = "Trigmongos team";
 
 
-class LoginController {
+class AdminController {
 
     async validateClient(mailCheck,passwordCheck){
         
@@ -53,7 +53,30 @@ class LoginController {
 
         return jwt.sign(payload, secret);
     }
+
+    async validateAdmin(mailCheck,passwordCheck){
+        
+        let admin = await adminController.findByEmail(mailCheck);
+        if (admin == null){
+            throw new Error('Wrong user or password');
+        }
+        let password = admin.password;
+
+        let verify = await bcrypt.compare(passwordCheck, password);
+
+        if(!verify){
+            throw new Error('Wrong user or password');
+        }
+
+        let payload = {
+            adminId : admin.id,
+            createdAt: new Date,
+            isAdmin: admin.isAdmin,
+        };
+
+        return jwt.sign(payload, secret);
+    }
 }
 
-const loginController = new LoginController();
-module.exports = loginController;
+const adminController = new AdminController();
+module.exports = adminController;
