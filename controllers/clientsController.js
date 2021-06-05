@@ -1,4 +1,4 @@
-const Client = require("../models/client");
+const Client = require("../models/client.js");
 const bcrypt = require("bcrypt");
 
 class Patient {
@@ -13,6 +13,18 @@ class Patient {
 
     async findAllClients() {
         return Client.find();
+    }
+
+    async findByEmail(email){
+        return Client.findOne(
+            {email: email}
+        )
+    }
+
+    async findById(id){
+        return Client.findOne(
+            {_id: id}
+        )
     }
 
     async modifyClient(body) {

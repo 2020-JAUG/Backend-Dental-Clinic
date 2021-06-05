@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const clientSchema = new Schema ({
+const adminSchema = new Schema ({
     name: {
         type: "String",
         required: true
@@ -20,23 +20,7 @@ const clientSchema = new Schema ({
         type: "String",
         required: true
     },
-    dateOfBirth: {
-        type: Date,
-        required: true
-    },
-    city: {
-        type: "String",
-        required: true
-    },
-    cp: {
-        type: "String",
-        required: true
-    },
     isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    isActive: {
         type: Boolean,
         default: true
     }
@@ -50,7 +34,7 @@ const toJSONConfig = {
 }
 
 
-clientSchema.set('toJSON', toJSONConfig);
+adminSchema.set('toJSON', toJSONConfig);
 
-const Client = mongoose.model("Client", clientSchema);
-module.exports = Client;
+const Admin = mongoose.model("Admin", adminSchema);
+module.exports = Admin;
