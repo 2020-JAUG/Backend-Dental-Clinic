@@ -14,7 +14,7 @@ const clinicSchema = new Schema ({
         type: String,
         required: true
     },
-    adress: {
+    address: {
         type: String
     },
     city: {
