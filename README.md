@@ -52,12 +52,19 @@ Finally, enter the endpoints petitions in Postman and send them.
 - Clients
    - GET /clients --> Shows all the clients.
    - POST /clients --> Creates a new client.
+   - POST /clients/profile --> Shows client's profile.
    - PUT /clients --> Modifies a client's information.
    - DELETE /clients --> Deletes a client.
 
 <br>
 
 - Appointments
+   - GET /appointment --> Shows all the appointments.
+   - POST /appointment/schedule --> Shows dentist’s schedule by date.
+   - POST /appointment/client --> Shows all appointments from the same client.
+   - POST /appointment --> Creates a new appointment.
+   - PUT /appointment --> Modifies an appointment information.
+   - DELETE /appointment --> Deletes an appointment.
 
 <br>
 
@@ -70,6 +77,7 @@ Finally, enter the endpoints petitions in Postman and send them.
 
 - Dentists
    - GET /dentists --> Shows all the dentists.
+   - POST /dentists/profile --> Shows dentist's profile
    - POST /dentists --> Creates a new dentist.
    - POST /dentists/addspeciality --> Adds a new speciality to a dentist
    - PUT /dentists --> Modifies a dentist's information.
