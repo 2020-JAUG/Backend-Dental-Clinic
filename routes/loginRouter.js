@@ -37,4 +37,22 @@ router.post('/dentist', async (req, res)=> {
     } 
 })
 
+// LOGIN ROUTE FOR ADMIN
+
+router.post('/admin', async (req, res)=> {
+    try {
+        const mailCheck = req.body.email;
+        const passwordCheck= req.body.password;
+        let token = await loginController.validateAdmin(mailCheck,passwordCheck);
+        let admin = await adminController.findByEmail(mailCheck);
+        res.status(200).json({token, admin});
+        
+    }catch (err) {
+        return res.status(500).json({
+            message: err.message
+        }); 
+    } 
+})
+
+
 module.exports = router;

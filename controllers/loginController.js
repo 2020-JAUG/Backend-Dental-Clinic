@@ -1,3 +1,4 @@
+
 const clientsController = require('./clientsController.js');
 const dentistController = require('./dentistController.js');
 const adminController = require('./adminController.js')
@@ -6,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const secret = "Trigmongos team";
 
 
-class AdminController {
+class LoginController {
 
     async validateClient(mailCheck,passwordCheck){
         
@@ -78,5 +79,5 @@ class AdminController {
     }
 }
 
-const adminController = new AdminController();
-module.exports = adminController;
+const loginController = new LoginController();
+module.exports = loginController;

@@ -15,6 +15,12 @@ class User {
         return Admin.create(body);
     }
 
+    async findByEmail(email){
+        return Admin.findOne(
+            {email: email}
+        )
+    }
+
     async updateAdmin(body){
         return Admin.findByIdAndUpdate(
             {_id: body.id},

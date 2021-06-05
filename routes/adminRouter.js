@@ -16,7 +16,7 @@ router.get('/', async(req, res) => {
 
 // POST - Creates a new clinic
 
-router.post('/', admin, async(req, res) => {
+router.post('/', async(req, res) => {
     try {
         const body = req.body;
         res.json(await adminController.createAdmin(body))
