@@ -10,6 +10,12 @@ class Hospital {
         return Clinic.find();
     }
 
+    async showClinic(id){
+        return Clinic.findOne(
+            {_id: id}
+        )
+    }
+
     async createClinic(clinic){
         return Clinic.create(clinic);
     }
@@ -22,6 +28,7 @@ class Hospital {
             adress: bodyData.adress,    
             city: bodyData.city,
             postalCode : bodyData.postalCode,
+            appointmentArray: bodyData.appointmentArray,
             isOpen : bodyData.isOpen },
             {new:true,omitUndefined:true}
         )
