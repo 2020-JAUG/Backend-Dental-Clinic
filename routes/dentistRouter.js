@@ -17,7 +17,7 @@ router.get('/', admin, async(req, res) => {
     }
 });
 
-router.post('/info',  async(req, res) => {
+router.post('/info', authClient, async(req, res) => {
     try {
         let body = req.body;
         res.json(await dentistController.findDentistInfo(body));
@@ -28,7 +28,7 @@ router.post('/info',  async(req, res) => {
     }
 });
 
-router.post('/profile', async(req, res) => {
+router.post('/profile', authDentist, async(req, res) => {
     try {
         let id = req.body.id;
         res.json(await dentistController.findById(id));
@@ -41,7 +41,7 @@ router.post('/profile', async(req, res) => {
 
 // POST - Creates a new dentist
 
-router.post('/', async(req, res) => {
+router.post('/', admin, async(req, res) => {
     try {
         const dentist = req.body;
         res.json(await dentistController.createDentist(dentist));
@@ -54,7 +54,7 @@ router.post('/', async(req, res) => {
 
 // PUT - Updates the information about a dentist
 
-router.put('/', async (req,res) => {
+router.put('/', authDentist, async (req,res) => {
     try{
         const bodyData = req.body;
         res.json(await dentistController.updateDentist(bodyData)); 
@@ -67,7 +67,7 @@ router.put('/', async (req,res) => {
 
 // POST - Add speciality to a dentist
 
-router.post('/addspeciality', async (req,res) => {
+router.post('/addspeciality', authDentist, async (req,res) => {
     try{
         const bodyData = req.body;
         res.json(await dentistController.addSpeciality(bodyData)); 
@@ -79,7 +79,7 @@ router.post('/addspeciality', async (req,res) => {
 });
 
 // DELETE - Deletes a dentist
-router.delete('/', async (req, res) => {
+router.delete('/', authDentist, async (req, res) => {
     try {
         const bodyData = req.body;
         res.json(await dentistController.deleteDentist(bodyData));

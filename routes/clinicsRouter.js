@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const clinicsController = require('../controllers/clinicsController');
+const admin = require('../middleware/admin');
 
 // GET - Returns all clinics
 
@@ -15,7 +16,7 @@ router.get('/', async(req, res) => {
 
 // POST - Creates a new clinic
 
-router.post('/', async(req, res) => {
+router.post('/', admin, async(req, res) => {
     try {
         const clinic = req.body;
         res.json(await clinicsController.createClinic(clinic))
@@ -28,7 +29,7 @@ router.post('/', async(req, res) => {
 
 // PUT - Updates the information about a clinic 
 
-router.put('/', async (req,res) => {
+router.put('/', admin, async (req,res) => {
     try{
         const bodyData = req.body;
         res.json(await clinicsController.updateClinic(bodyData)); 
@@ -40,7 +41,7 @@ router.put('/', async (req,res) => {
 })
 
 // DELETE - Deletes a clinic
-router.delete('/', async (req, res) => {
+router.delete('/', admin, async (req, res) => {
     try {
         const bodyData = req.body;
         res.json(await clinicsController.deleteClinic(bodyData))
