@@ -1,7 +1,12 @@
 const router = require("express").Router();
 const appointmentController = require("../controllers/appointmentController");
+const authClient = require("../middleware/authClient");
+const authDentist = require("../middleware/authDentist");
+const admin = require("../middleware/admin");
 
-router.post("/", async(req, res) => {
+
+
+router.post("/", authClient, async(req, res) => {
     try {
         const data = req.body;
         res.json(await appointmentController.createAppointment(data));
@@ -12,7 +17,7 @@ router.post("/", async(req, res) => {
     }
 });
 
-router.get("/", async(req, res) => {
+router.get("/", admin, async(req, res) => {
     try {
         res.json(await appointmentController.findAllAppointments());
     } catch (error) {
@@ -22,7 +27,7 @@ router.get("/", async(req, res) => {
     }
 });
 
-router.post("/client", async(req, res) => {
+router.post("/client", authClient, async(req, res) => {
     try {
         const id = req.body.id;
         res.json(await appointmentController.findByClient(id));
@@ -33,7 +38,7 @@ router.post("/client", async(req, res) => {
     }
 });
 
-router.post("/schedule", async(req, res) => {
+router.post("/schedule", authDentist, async(req, res) => {
     try {
         const date = req.body.date;
         const dentistId = req.body.dentist;
@@ -45,7 +50,7 @@ router.post("/schedule", async(req, res) => {
     }
 });
 
-router.put("/", async(req, res) => {
+router.put("/", authClient, async(req, res) => {
     try {
         const data = req.body;
         res.json(await appointmentController.modifyAppointment(data));
@@ -56,7 +61,7 @@ router.put("/", async(req, res) => {
     }
 });
 
-router.delete("/", async(req, res) => {
+router.delete("/", admin, async(req, res) => {
     try {
         const data = req.body;
         res.json(await appointmentController.removeAppointment(data));
