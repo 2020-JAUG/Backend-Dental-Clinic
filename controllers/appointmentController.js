@@ -57,9 +57,12 @@ class Meeting {
             date: data.date,
             isActive: data.isActive
             });
-        console.log(newAppointment._id);
+
+
+        let newAppointmentId = String(newAppointment._id);
+
         const clinicApp = await Clinic.findByIdAndUpdate({_id: clinicId},
-            {$push: {appointmentArray: newAppointment._id} });
+            {$push: {appointmentArray: newAppointmentId} });
 
         return newAppointment;
         
@@ -129,9 +132,18 @@ class Meeting {
         )
     }
 
-    async removeAppointment(req) {
-            return Appointment.findByIdAndRemove( { _id: req._id } );
-    }
+    async removeAppointment(data) {
+
+        const clinicId = data.clinic;
+        const appointmentId = data.id;
+
+        const deleteAppointment = await Appointment.findByIdAndRemove( { _id: appointmentId } );
+
+        const clinicApp = await Clinic.findByIdAndUpdate({_id: clinicId},
+        { $pull : {appointmentArray: appointmentId} });
+
+        return deleteAppointment;
+ }
 }
 
 let appointmentController = new Meeting();
