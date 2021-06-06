@@ -22,7 +22,16 @@
 
 Challenge from the Fullstack Developer Bootcamp at <a href="https://geekshubsacademy.com/">GeeksHubs Academy</a> where we have to create the backend for a dental clinic.
 
-This Project has been done by [José Luis Aparicio](https://github.com/ApcarJo), [Alejandro Urbina](https://github.com/2020-JAUG) and [Adriana Fayos](https://github.com/AdrianaFayos).
+The purpose of our backend is to support an on-demand and flexible private dental service model, this translates into clients being able to choose which clinic and which dentist will provide the service. To do this, they just have to register, choose a clinic and select the best specialist for the date.
+
+Specialists will be able to register, fill their profile, add new specialities and check their schedule to know how many dates they have each day.
+Clients will also be able to check their dating history on their profile.
+
+The administrator is a figure who has complete control of the database and its information. Admin is the only one who can give the authorization to create new dentists profiles.
+
+---
+This Project has been done by [José Luis Aparicio](https://github.com/ApcarJo), [Alejandro Urbina](https://github.com/2020-JAUG) and [Adriana Fayos](https://github.com/AdrianaFayos). 
+The amount of hours to get the job done was about 75 hours in total.
 
 Starting date: May 21th 2021. <br>
 Due date: June 6th 2021.
@@ -105,6 +114,7 @@ Installed dependencies: Express, Mongoose, Nodemon, Cors, Bcrypt and Jsonwebtoke
 
 ---
 
-
+Thanks to all our classmates for the help and work as a great team.
+Specially last minute Pedro's help with a struggle with an array.
 
 [🔝](#top)
