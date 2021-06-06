@@ -13,7 +13,7 @@ class Meeting {
 
     async createAppointment(data) {
 
-        const clientId = data.clientId;
+        const clientId = data.client;
         const date = data.date;
         const check = await Appointment.findOne({date: date}, {idClient: clientId});
         if (check != null ){
