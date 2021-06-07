@@ -15,7 +15,6 @@ class Meeting {
 
         const clientId = data.client;
         const date = data.date;
-        console.log(date, clientId);
         const check = await Appointment.findOne({date: date}, {idClient: clientId});
         if (check != null ){
                 throw new Error('You already have an appointment');
@@ -51,13 +50,22 @@ class Meeting {
             especialidad: dentistInfo.speciality,
         }
 
-        return Appointment.create(
+        const newAppointment = await Appointment.create(
             {client:client1,
             clinic:clinic1,
             dentist: dentist1,
             date: data.date,
             isActive: data.isActive
             });
+
+
+        let newAppointmentId = String(newAppointment._id);
+
+        const clinicApp = await Clinic.findByIdAndUpdate({_id: clinicId},
+            {$push: {appointmentArray: newAppointmentId} });
+
+        return newAppointment;
+        
     }
 
     async findAllAppointments() {
@@ -124,9 +132,18 @@ class Meeting {
         )
     }
 
-    async removeAppointment(req) {
-            return Appointment.findByIdAndRemove( { _id: req._id } );
-    }
+    async removeAppointment(data) {
+
+        const clinicId = data.clinic;
+        const appointmentId = data.id;
+
+        const deleteAppointment = await Appointment.findByIdAndRemove( { _id: appointmentId } );
+
+        const clinicApp = await Clinic.findByIdAndUpdate({_id: clinicId},
+        { $pull : {appointmentArray: appointmentId} });
+
+        return deleteAppointment;
+ }
 }
 
 let appointmentController = new Meeting();
