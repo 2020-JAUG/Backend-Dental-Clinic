@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secret = "Trigmongos team";
+const secret = "Trident All";
 
 const authenticate = (req, res, next) => {
 
