@@ -30,8 +30,12 @@ const dentistSchema = new Schema ({
         type: Date,
         required: true
     },
+    image: {
+        type: String
+    },
     isActive: {
-        type: Boolean
+        type: Boolean,
+        default: false
     } 
     
 });

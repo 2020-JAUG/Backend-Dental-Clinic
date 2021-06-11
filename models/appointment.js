@@ -22,7 +22,10 @@ const appointmentSchema = new Schema ({
         type: Date,
         required: true
     },
-
+    message: {
+        type: String,
+        required: false
+    },
     isActive: {
         type: Boolean,
         default: true

@@ -27,6 +27,9 @@ const clinicSchema = new Schema ({
     appointmentArray:{
         type: Array
     },
+    image: {
+        type: String
+    },
     isOpen: {
         type: Boolean
     } 
