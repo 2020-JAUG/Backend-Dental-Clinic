@@ -45,7 +45,7 @@ router.post('/profile', authDentist, async(req, res) => {
 
 // POST - Creates a new dentist
 
-router.post('/', admin, async(req, res) => {
+router.post('/', async(req, res) => {
     try {
         const dentist = req.body;
         res.json(await dentistController.createDentist(dentist));

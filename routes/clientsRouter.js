@@ -18,7 +18,7 @@ router.post("/", async(req, res) => {
 
 // GET - Find all data of all clients
 
-router.get("/", admin, async(req, res) => {
+router.get("/", async(req, res) => {
     try {
         res.json(await clientsController.findAllClients());
     } catch (error) {

@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const clientSchema = new Schema ({
     name: {
-        type: "String",
+        type: String,
         required: true
     },
     email: {
-        type: "String",
+        type: String,
         required: true,
         unique: true,
         lowercase: true
@@ -17,7 +17,7 @@ const clientSchema = new Schema ({
         required: true,
     },
     password: {
-        type: "String",
+        type: String,
         required: true
     },
     dateOfBirth: {
@@ -25,12 +25,15 @@ const clientSchema = new Schema ({
         required: true
     },
     city: {
-        type: "String",
+        type: String,
         required: true
     },
     cp: {
-        type: "String",
+        type: String,
         required: true
+    },
+    image: {
+        type: String
     },
     isAdmin: {
         type: Boolean,
