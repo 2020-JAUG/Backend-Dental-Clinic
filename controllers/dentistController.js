@@ -24,7 +24,8 @@ class Professional {
              {name: '$name',
              _id: 0,
              city: '$city',
-             speciality: '$speciality'}
+             speciality: '$speciality',
+             image: '$image'}
          );
      }
 
