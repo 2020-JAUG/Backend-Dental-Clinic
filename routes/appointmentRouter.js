@@ -34,7 +34,7 @@ router.get("/", admin, async(req, res) => {
 
 router.post("/client", authClient, async(req, res) => {
     try {
-        const id = req.body.id;
+        const id = req.body.client;
         res.json(await appointmentController.findByClient(id));
     } catch (error) {
         return res.status(500).json({
