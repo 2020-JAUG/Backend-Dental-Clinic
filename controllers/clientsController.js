@@ -21,6 +21,13 @@ class Patient {
         )
     }
 
+    async findByRole(email){
+        let result = await Client.findOne(
+            {email: email}, {email: '$email'}
+        );
+        return result;
+    }
+
     async findById(id){
         return Client.findOne(
             {_id: id}
