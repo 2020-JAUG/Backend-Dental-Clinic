@@ -42,6 +42,17 @@ router.post('/profile', authClient, async(req, res) => {
     }
 });
 
+router.post('/email', async(req, res) => {
+    try {
+        let email = req.body.email;
+        res.json(await clientsController.findByRole(email));
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
 // PUT - Client can modify some attributes of his profile
 
 router.put("/", authClient, async(req, res) => {

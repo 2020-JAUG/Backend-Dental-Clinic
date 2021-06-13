@@ -43,6 +43,17 @@ router.post('/profile', authDentist, async(req, res) => {
     }
 });
 
+router.post('/email', async(req, res) => {
+    try {
+        let email = req.body.email;
+        res.json(await dentistController.findByRole(email));
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
 // POST - Creates a new dentist
 
 router.post('/', async(req, res) => {

@@ -44,6 +44,13 @@ class Professional {
         )
     }
 
+    async findByRole(email){
+        let result = await Dentist.findOne(
+            {email: email}, {email: '$email'}
+        );
+        return result;
+    }
+
     async findById(id){
         return Dentist.findOne(
             {_id: id}
