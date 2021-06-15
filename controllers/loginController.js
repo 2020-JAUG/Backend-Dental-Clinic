@@ -4,7 +4,8 @@ const dentistController = require('./dentistController.js');
 const adminController = require('./adminController.js')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const secret = "Trigmongos team";
+const secret1 = "Trigmongos team";
+const secret2 = "Trident All";
 
 
 class LoginController {
@@ -29,7 +30,7 @@ class LoginController {
             isAdmin: client.isAdmin,
         };
 
-        return jwt.sign(payload, secret);
+        return jwt.sign(payload, secret1);
     }
 
     async validateDentist(mailCheck,passwordCheck){
@@ -48,11 +49,10 @@ class LoginController {
 
         let payload = {
             dentistId : dentist.id,
-            createdAt: new Date,
-            isAdmin: dentist.isAdmin,
+            createdAt: new Date
         };
 
-        return jwt.sign(payload, secret);
+        return jwt.sign(payload, secret2);
     }
 
     async validateAdmin(mailCheck,passwordCheck){
@@ -75,7 +75,7 @@ class LoginController {
             isAdmin: admin.isAdmin,
         };
 
-        return jwt.sign(payload, secret);
+        return jwt.sign(payload, secret1);
     }
 }
 
