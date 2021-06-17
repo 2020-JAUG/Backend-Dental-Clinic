@@ -15,6 +15,7 @@ class Meeting {
 
         const clientId = data.client;
         const date = data.date;
+        const message = data.message;
         const check = await Appointment.findOne({date: date}, {idClient: clientId});
         if (check != null ){
                 throw new Error('You already have an appointment');
@@ -55,6 +56,8 @@ class Meeting {
             clinic:clinic1,
             dentist: dentist1,
             date: data.date,
+            message : data.message,
+            
             isActive: data.isActive
             });
 
@@ -89,7 +92,7 @@ class Meeting {
                     clinicPhone: clientAppointments[i].clinic.phone,
                     clinicEmail: clientAppointments[i].clinic.email,
                     dentistName: clientAppointments[i].dentist.name,
-                    date: clientAppointments[i].date 
+                    date: clientAppointments[i].date,
                 }
                     clientArray.push(appointment);
             }
