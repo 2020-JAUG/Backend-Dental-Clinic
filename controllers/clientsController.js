@@ -36,7 +36,9 @@ class Patient {
 
     async modifyClient(body) {
         return Client.findByIdAndUpdate( { _id: body._id },
-            { email: body.email,
+            { name: body.name,
+              email: body.email,
+              phone: body.phone,
               city: body.city,
               cp: body.cp,
               isActive: body.isActive },
