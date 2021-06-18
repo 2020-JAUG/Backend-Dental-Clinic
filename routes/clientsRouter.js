@@ -66,6 +66,19 @@ router.put("/", authClient, async(req, res) => {
     }
 });
 
+// PUT - Client can modify password
+
+router.put("/updatepassword", authClient, async(req, res) => {
+    try {
+        const body = req.body;
+        res.json(await clientsController.modifyPassword(body));
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+});
+
 
 // DELETE - Client can delete his profile
 

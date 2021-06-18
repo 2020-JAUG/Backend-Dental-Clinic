@@ -35,16 +35,46 @@ class Patient {
     }
 
     async modifyClient(body) {
-        return Client.findByIdAndUpdate( { _id: body._id },
+
+        return Client.findByIdAndUpdate( { _id: body.client },
             { name: body.name,
               email: body.email,
               phone: body.phone,
+              password: body.password,
               city: body.city,
               cp: body.cp,
               isActive: body.isActive },
              { new:true, omitUndefined:true }
         )
     }
+
+    async modifyPassword(body) {
+
+       let client = await Client.findById(body.client);
+
+       let oldPassword = body.oldPassword;
+
+       let password = client.password;
+
+       console.log(oldPassword, password)
+
+       let verify = await bcrypt.compare(oldPassword, password);
+       
+       if(!verify){
+        throw new Error('Wrong user or password');
+       }
+
+       let newPassword = await bcrypt.hash( body.newPassword, 10 );
+
+       console.log(newPassword)
+
+       return Client.findByIdAndUpdate( 
+        { _id: body.client },
+        { password: newPassword }) 
+
+    }
+
+
 
     async removeClient(req) {
             return Client.findByIdAndRemove( { _id: req._id } );
