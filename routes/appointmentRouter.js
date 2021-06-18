@@ -57,18 +57,6 @@ router.post("/schedule", authDentist, async(req, res) => {
     }
 });
 
-// POST - FIND all appointments active to a dentist
-router.post("/scheduleDentist", authDentist, async(req, res) => {
-    try {
-        const dentistId = req.body.dentist;
-        res.json(await appointmentController.findByDentist(dentistId));
-    } catch (error) {
-        return res.status(500).json({
-            message: error.message
-        });
-    }
-});
-
 // PUT - Modify an appointment by the client
 
 router.put("/", authClient, async(req, res) => {
@@ -84,7 +72,7 @@ router.put("/", authClient, async(req, res) => {
 
 // DELETE - Remove an appointment by the admin
 
-router.delete("/", admin, async(req, res) => {
+router.delete("/", authClient, async(req, res) => {
     try {
         const data = req.body;
         res.json(await appointmentController.removeAppointment(data));
