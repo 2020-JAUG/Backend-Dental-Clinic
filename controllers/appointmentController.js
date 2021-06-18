@@ -118,6 +118,30 @@ class Meeting {
         return dentistArray;
     }
 
+    async findByDentist(dentistId) {
+
+        const dentistSchedule =  await Appointment.find();
+        console.log(dentistSchedule)
+
+        let dentistArray = [];
+
+        for (let i in dentistSchedule){
+
+            if ( dentistSchedule[i].dentist.idDentist == dentistId ){
+                const appointment2 = {
+                    clinicName: dentistSchedule[i].clinic.name,
+                    clinicAddress: dentistSchedule[i].clinic.address,
+                    clinicPhone: dentistSchedule[i].clinic.phone,
+                    clinicEmail: dentistSchedule[i].clinic.email,
+                    dentistName: dentistSchedule[i].dentist.name,
+                    date: dentistSchedule[i].date,
+                }
+                dentistArray.push(appointment2);
+            }
+        }
+        return dentistArray;
+    }
+
     async modifyAppointment(data) {
 
         const clinicId = data.clinic;
