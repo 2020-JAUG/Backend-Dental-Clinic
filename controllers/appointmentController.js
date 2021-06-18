@@ -87,6 +87,8 @@ class Meeting {
 
             if ( clientAppointments[i].client.idClient == id ){
                 const appointment = {
+                    id : clientAppointments[i]._id,
+                    clinicId : clientAppointments[i].clinic.idClinica,
                     clinicName: clientAppointments[i].clinic.name,
                     clinicAddress: clientAppointments[i].clinic.address,
                     clinicPhone: clientAppointments[i].clinic.phone,
@@ -117,20 +119,25 @@ class Meeting {
     }
 
     async modifyAppointment(data) {
+
         const clinicId = data.clinic;
+
         const clinicInfo = await Clinic.findById(clinicId);
 
         let clinic1 = {
             idClinica: clinicId,
-            nombre : clinicInfo.name,
+            name : clinicInfo.name,
+            phone : clinicInfo.phone,
             email : clinicInfo.email,
             city : clinicInfo.city,
         }
-        return Appointment.findByIdAndUpdate( { _id: data._id },
+
+        return Appointment.findByIdAndUpdate( { _id: data.id },
             {
                 clinic: clinic1,
                 date: data.date,
                 isActive: data.isActive
+
             }, {new:true,omitUndefined:true}
         )
     }
