@@ -56,17 +56,13 @@ class Patient {
 
        let password = client.password;
 
-       console.log(oldPassword, password)
-
        let verify = await bcrypt.compare(oldPassword, password);
        
        if(!verify){
         throw new Error('Wrong user or password');
        }
-
+       
        let newPassword = await bcrypt.hash( body.newPassword, 10 );
-
-       console.log(newPassword)
 
        return Client.findByIdAndUpdate( 
         { _id: body.client },

@@ -84,7 +84,7 @@ router.put("/", authClient, async(req, res) => {
 
 // DELETE - Remove an appointment by the admin
 
-router.delete("/", authClient, async(req, res) => {
+router.post("/delete", authClient, async(req, res) => {
     try {
         const data = req.body;
         res.json(await appointmentController.removeAppointment(data));
