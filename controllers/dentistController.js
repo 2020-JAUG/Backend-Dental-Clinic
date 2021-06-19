@@ -20,7 +20,8 @@ class Professional {
 
     async findDentistInfo(body) {
         return Dentist.find(
-             {isActive : true, city: body.city},
+             {city: body.city}, // {isActive : true, city: body.city} he comentado isActive para que de momento por frontend 
+             //salgan todos los dentistas sin necesidad de activas la cuenta ya que al registrarse isaActive:false
              {name: '$name',
              _id: 0,
              city: '$city',
