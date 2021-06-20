@@ -32,12 +32,38 @@ class Professional {
 
     async updateDentist(bodyData){
         return Dentist.findByIdAndUpdate(
-            {_id: bodyData.id},
-            {phone: bodyData.phone,
+            {_id: bodyData.dentist},
+            {name: bodyData.name,
+            phone: bodyData.phone,
+            email: bodyData.email,
+            speciality: bodyData.speciality,
             city: bodyData.city,},
             {new:true,omitUndefined:true}
         )
     }
+
+    async modifyPassword(body) {
+
+        let dentist = await Dentist.findById(body.dentist);
+ 
+        let oldPassword = body.oldPassword;
+ 
+        let password = dentist.password;
+ 
+        let verify = await bcrypt.compare(oldPassword, password);
+        
+        if(!verify){
+         throw new Error('Wrong user or password');
+        }
+        
+        let newPassword = await bcrypt.hash( body.newPassword, 10 );
+ 
+        return Dentist.findByIdAndUpdate( 
+         { _id: body.dentist },
+         { password: newPassword }) 
+ 
+     }
+ 
 
     async findByEmail(email){
         return Dentist.findOne(

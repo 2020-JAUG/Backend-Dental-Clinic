@@ -80,6 +80,20 @@ router.put('/', authDentist, async (req,res) => {
     }
 });
 
+// PUT - Dentist can modify password
+
+router.put("/updatepassword", authDentist, async(req, res) => {
+    try {
+        const body = req.body;
+        res.json(await dentistController.modifyPassword(body));
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+});
+
+
 // POST - Add speciality to a dentist
 
 router.post('/addspeciality', authDentist, async (req,res) => {
