@@ -131,7 +131,7 @@ class Meeting {
                     clinicAddress: dentistSchedule[i].clinic.address,
                     clinicPhone: dentistSchedule[i].clinic.phone,
                     clinicEmail: dentistSchedule[i].clinic.email,
-                    clinicName: dentistSchedule[i].clinic.email,
+                    clinicName: dentistSchedule[i].clinic.name,
                     clientName: dentistSchedule[i].client.name,
                     city: dentistSchedule[i].clinic.city,
                     date: dentistSchedule[i].date,
