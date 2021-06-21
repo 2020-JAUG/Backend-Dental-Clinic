@@ -27,6 +27,17 @@ router.post('/', admin, async(req, res) => {
     }
 });
 
+router.post('/email', admin, async(req, res) => {
+    try {
+        const body = req.body;
+        res.json(await adminController.findByEmail(body))
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
+    }
+});
+
 // PUT - Updates the information about an admin
 
 router.put('/', admin, async (req,res) => {
